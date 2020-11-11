@@ -72,7 +72,6 @@ class Matrix
 
 int main() 
 {
-    //small change for testing
     Matrix newMatrix = Matrix(4,8);
     newMatrix.set(2,7,3);
     newMatrix.print();
