@@ -52,6 +52,29 @@ class Matrix
             return newMatrix;
         }
 
+        Matrix multiply(Matrix m2){
+            if(colsSize != m2.rowsSize){
+                // throw an exception
+                return 1;
+            }
+
+            Matrix newMatrix(rowsSize, m2.colsSize);
+
+            for (int indexR = 0; indexR < matrix.size(); indexR++)
+            { 
+                for (int indexC = 0; indexC < matrix[indexR].size(); indexC++)
+                {
+                    for (int k = 0; k < colsSize; k++)
+                    {
+                        double value = 
+                            (matrix[indexR][k] * m2.get(k, indexC)) + newMatrix.get(indexR, indexC);
+                        newMatrix.set(indexR, indexC, value);
+                    }
+                }
+            }
+            return newMatrix;
+        }
+
         // Should write protect by index out of bounds
         void set(int rowsPosition, int colsPosition, double val) 
         {
@@ -86,10 +109,11 @@ class Matrix
     private:
         void initMatrix(int rowsSize, int colsSize)
         {
+            double initValue = 0.0;
             for(int indexR = 0; indexR < rowsSize;indexR++) {
                 vector<double> singleRow;
                 for(int indexC = 0; indexC < colsSize ;indexC++) {
-                    singleRow.push_back(1.0); // change to 0.0 for prod version
+                    singleRow.push_back(initValue); // change to 0.0 for prod version
                 }
                 matrix.push_back(singleRow);
             }
@@ -98,13 +122,15 @@ class Matrix
 
 int main() 
 {
-    Matrix newMatrix = Matrix(4,8);
-    Matrix secondMatrix = Matrix(4,8);
-    newMatrix.set(2,7,3);
+    Matrix newMatrix = Matrix(2,2);
+    Matrix secondMatrix = Matrix(2,2);
+    newMatrix.print();
+    secondMatrix.print();
+//    newMatrix.set(2,7,3);
 //    newMatrix.print();
 //    cout << newMatrix.cols() << endl;
 
-    Matrix resultMatrix = newMatrix.subtract(secondMatrix);
+    Matrix resultMatrix = newMatrix.multiply(secondMatrix);
 
     resultMatrix.print();
 }
