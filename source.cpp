@@ -26,15 +26,28 @@ class Matrix
             initMatrix(size, size);
         }
 
-        // Should write protect by index out of bounds
-        void set(int rowsSize, int colsSize, double val) 
+        // Should check correct size
+        Matrix add(Matrix m2)
         {
-            matrix[rowsSize][colsSize] = val;
+            Matrix newMatrix(rowsSize, colsSize);
+            for(int indexR = 0; indexR < matrix.size(); indexR++) {
+                for(int indexC = 0; indexC < matrix[indexR].size(); indexC++){
+                    double value = m2.get(indexR, indexC) + this->get(indexR, indexC);
+                    newMatrix.set(indexR, indexC, value);
+                }
+            }
+            return newMatrix;
         }
 
-        double get(int rowsSize, int colsSize) 
+        // Should write protect by index out of bounds
+        void set(int rowsPosition, int colsPosition, double val) 
         {
-            return matrix[rowsSize][colsSize];
+            matrix[rowsPosition][colsPosition] = val;
+        }
+
+        double get(int rowsPosition, int colsPosition) 
+        {
+            return matrix[rowsPosition][colsPosition];
         }
 
         int cols()
@@ -63,7 +76,7 @@ class Matrix
             for(int indexR = 0; indexR < rowsSize;indexR++) {
                 vector<double> singleRow;
                 for(int indexC = 0; indexC < colsSize ;indexC++) {
-                    singleRow.push_back(0.0);
+                    singleRow.push_back(1.0); // change to 0.0 for prod version
                 }
                 matrix.push_back(singleRow);
             }
@@ -73,7 +86,12 @@ class Matrix
 int main() 
 {
     Matrix newMatrix = Matrix(4,8);
+    Matrix secondMatrix = Matrix(4,8);
     newMatrix.set(2,7,3);
-    newMatrix.print();
-    cout << newMatrix.cols() << endl;
+//    newMatrix.print();
+//    cout << newMatrix.cols() << endl;
+
+    Matrix resultMatrix = newMatrix.add(secondMatrix);
+
+    resultMatrix.print();
 }
