@@ -39,6 +39,19 @@ class Matrix
             return newMatrix;
         }
 
+        // Should check correct size
+        Matrix subtract(Matrix m2)
+        {
+            Matrix newMatrix(rowsSize, colsSize);
+            for(int indexR = 0; indexR < matrix.size(); indexR++) {
+                for(int indexC = 0; indexC < matrix[indexR].size(); indexC++){
+                    double value = this->get(indexR, indexC) - m2.get(indexR, indexC);
+                    newMatrix.set(indexR, indexC, value);
+                }
+            }
+            return newMatrix;
+        }
+
         // Should write protect by index out of bounds
         void set(int rowsPosition, int colsPosition, double val) 
         {
@@ -91,7 +104,7 @@ int main()
 //    newMatrix.print();
 //    cout << newMatrix.cols() << endl;
 
-    Matrix resultMatrix = newMatrix.add(secondMatrix);
+    Matrix resultMatrix = newMatrix.subtract(secondMatrix);
 
     resultMatrix.print();
 }
