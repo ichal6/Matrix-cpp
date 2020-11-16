@@ -31,7 +31,12 @@ class Matrix
 
         Matrix(string filename, string path){
             ifstream readFile(path + '/' + filename);
+
+            readFile >> this->colsSize >> this->rowsSize;
+            initMatrix(this->rowsSize, this->colsSize);
+
             readMatrixFromFile(readFile);
+            
             readFile.close();
         }
 
@@ -145,10 +150,6 @@ class Matrix
         }
 
         void readMatrixFromFile(std::ifstream &inputStream){
-            inputStream >> this->colsSize >> this->rowsSize;
-
-            initMatrix(this->rowsSize, this->colsSize);
-
             int singlePosition;
             for (int indexR = 0; indexR < this->rowsSize; indexR++){
                 for (int indexC = 0; indexC < this->colsSize; indexC++){
