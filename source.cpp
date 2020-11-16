@@ -1,5 +1,8 @@
 #include <iostream>
 #include <vector>
+#include <fstream>
+#include "source.h"
+
 using namespace std;
 
 class Matrix 
@@ -52,7 +55,8 @@ class Matrix
             return newMatrix;
         }
 
-        Matrix multiply(Matrix m2){
+        Matrix multiply(Matrix m2)
+        {
             if(colsSize != m2.rowsSize){
                 // throw an exception
                 return 1;
@@ -73,6 +77,14 @@ class Matrix
                 }
             }
             return newMatrix;
+        }
+
+        void store(string filename, string path)
+        {
+            ofstream outputFile(path + '/' + filename);
+            outputFile<< this->colsSize << " " << this->rowsSize << endl;
+            printToFile(outputFile);
+            outputFile.close();
         }
 
         // Should write protect by index out of bounds
@@ -104,7 +116,15 @@ class Matrix
                 cout << endl; 
             }  
         }
-        
+
+        void printToFile(ofstream &outputStream)
+        {
+            for (int i = 0; i < matrix.size(); i++) { 
+                for (int j = 0; j < matrix[i].size(); j++) 
+                    outputStream << matrix[i][j] << " "; 
+                outputStream << endl; 
+            }  
+        }
 
     private:
         void initMatrix(int rowsSize, int colsSize)
@@ -131,6 +151,6 @@ int main()
 //    cout << newMatrix.cols() << endl;
 
     Matrix resultMatrix = newMatrix.multiply(secondMatrix);
-
+    newMatrix.store("matrixToFile.txt", "P:\\PK\\JiPP\\ex1\\Windows");
     resultMatrix.print();
 }
