@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <vector>
 #include <fstream>
 #include "source.h"
@@ -106,6 +107,7 @@ class Matrix
             matrix[rowsPosition][colsPosition] = val;
         }
 
+        // Should write protect by index out of bounds
         double get(int rowsPosition, int colsPosition) 
         {
             return matrix[rowsPosition][colsPosition];
@@ -125,7 +127,7 @@ class Matrix
         {
            for (int i = 0; i < matrix.size(); i++) { 
                 for (int j = 0; j < matrix[i].size(); j++) 
-                    cout << matrix[i][j] << " "; 
+                    cout << setprecision(2) << fixed << matrix[i][j] << " "; 
                 cout << endl; 
             }  
         }
@@ -153,7 +155,7 @@ class Matrix
 
         // Add exception handling
         void readMatrixFromFile(std::ifstream &inputStream){
-            int singlePosition;
+            double singlePosition;
             for (int indexR = 0; indexR < this->rowsSize; indexR++){
                 for (int indexC = 0; indexC < this->colsSize; indexC++){
                     inputStream >> singlePosition;
@@ -169,7 +171,7 @@ int main()
     Matrix secondMatrix = Matrix(2,2);
     // newMatrix.print();
     // secondMatrix.print();
-   newMatrix.set(0,0,3);
+   newMatrix.set(0,0,3.5);
 //    newMatrix.print();
 //    cout << newMatrix.cols() << endl;
 
