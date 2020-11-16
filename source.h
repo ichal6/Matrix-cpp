@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void printToFile(std::ofstream outputStream);
+void printToFile(std::ofstream &outputStream);
 
 void initMatrix(int rowsSize, int colsSize);
 
@@ -16,3 +16,5 @@ int cols();
 int rows();
 
 void print();
+
+void readMatrixFromFile(std::ifstream &inputStream);

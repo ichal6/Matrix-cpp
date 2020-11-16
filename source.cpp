@@ -29,6 +29,12 @@ class Matrix
             initMatrix(size, size);
         }
 
+        Matrix(string filename, string path){
+            ifstream readFile(path + '/' + filename);
+            readMatrixFromFile(readFile);
+            readFile.close();
+        }
+
         // Should check correct size
         Matrix add(Matrix m2)
         {
@@ -116,7 +122,7 @@ class Matrix
                 cout << endl; 
             }  
         }
-
+    private:
         void printToFile(ofstream &outputStream)
         {
             for (int i = 0; i < matrix.size(); i++) { 
@@ -126,7 +132,6 @@ class Matrix
             }  
         }
 
-    private:
         void initMatrix(int rowsSize, int colsSize)
         {
             double initValue = 0.0;
@@ -138,19 +143,34 @@ class Matrix
                 matrix.push_back(singleRow);
             }
         }
+
+        void readMatrixFromFile(std::ifstream &inputStream){
+            inputStream >> this->colsSize >> this->rowsSize;
+
+            initMatrix(this->rowsSize, this->colsSize);
+
+            int singlePosition;
+            for (int indexR = 0; indexR < this->rowsSize; indexR++){
+                for (int indexC = 0; indexC < this->colsSize; indexC++){
+                    inputStream >> singlePosition;
+                    this->set(indexR, indexC, singlePosition);
+                }      
+            }
+        }
 };
 
 int main() 
 {
     Matrix newMatrix = Matrix(2,2);
     Matrix secondMatrix = Matrix(2,2);
-    newMatrix.print();
-    secondMatrix.print();
-//    newMatrix.set(2,7,3);
+    // newMatrix.print();
+    // secondMatrix.print();
+   newMatrix.set(0,0,3);
 //    newMatrix.print();
 //    cout << newMatrix.cols() << endl;
 
     Matrix resultMatrix = newMatrix.multiply(secondMatrix);
     newMatrix.store("matrixToFile.txt", "P:\\PK\\JiPP\\ex1\\Windows");
-    resultMatrix.print();
+    secondMatrix = Matrix("matrixToFile.txt", "P:\\PK\\JiPP\\ex1\\Windows");
+    secondMatrix.print();
 }
