@@ -29,6 +29,7 @@ class Matrix
             initMatrix(size, size);
         }
 
+        // Add exception handling
         Matrix(string filename, string path){
             ifstream readFile(path + '/' + filename);
 
@@ -36,7 +37,7 @@ class Matrix
             initMatrix(this->rowsSize, this->colsSize);
 
             readMatrixFromFile(readFile);
-            
+
             readFile.close();
         }
 
@@ -90,6 +91,7 @@ class Matrix
             return newMatrix;
         }
 
+        // Add exception handling
         void store(string filename, string path)
         {
             ofstream outputFile(path + '/' + filename);
@@ -149,6 +151,7 @@ class Matrix
             }
         }
 
+        // Add exception handling
         void readMatrixFromFile(std::ifstream &inputStream){
             int singlePosition;
             for (int indexR = 0; indexR < this->rowsSize; indexR++){
