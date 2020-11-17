@@ -42,6 +42,14 @@ class Matrix
             readFile.close();
         }
 
+        Matrix(const Matrix &matrixToCopy)
+        {
+            this->colsSize = matrixToCopy.colsSize;
+            this->rowsSize = matrixToCopy.rowsSize; 
+            initMatrix(rowsSize, colsSize);
+            makeCopyMatrix(matrixToCopy);
+        }
+
         // Should check correct size
         Matrix add(Matrix m2)
         {
@@ -108,7 +116,7 @@ class Matrix
         }
 
         // Should write protect by index out of bounds
-        double get(int rowsPosition, int colsPosition) 
+        double get(int rowsPosition, int colsPosition) const 
         {
             return matrix[rowsPosition][colsPosition];
         }
@@ -163,6 +171,16 @@ class Matrix
                 }      
             }
         }
+
+        void makeCopyMatrix(Matrix const &matrixToCopy){
+            double singlePosition;
+            for (int indexR = 0; indexR < this->rowsSize; indexR++){
+                for (int indexC = 0; indexC < this->colsSize; indexC++){
+                    double value = matrixToCopy.get(indexR, indexC);
+                    this->set(indexR, indexC, value);
+                }      
+            }
+        }
 };
 
 int main() 
@@ -178,5 +196,14 @@ int main()
     Matrix resultMatrix = newMatrix.multiply(secondMatrix);
     newMatrix.store("matrixToFile.txt", "P:\\PK\\JiPP\\ex1\\Windows");
     secondMatrix = Matrix("matrixToFile.txt", "P:\\PK\\JiPP\\ex1\\Windows");
+
+    Matrix anotherMatrix = Matrix(secondMatrix);
+
+    secondMatrix.set(1,0,4.6);
+    anotherMatrix.set(1,0,99.999);
+
+    cout << "Second Matrix" << endl;
     secondMatrix.print();
+    cout << "Another Matrix" << endl;
+    anotherMatrix.print();
 }
