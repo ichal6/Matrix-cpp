@@ -194,8 +194,8 @@ int main()
 //    cout << newMatrix.cols() << endl;
 
     Matrix resultMatrix = newMatrix.multiply(secondMatrix);
-    newMatrix.store("matrixToFile.txt", "P:\\PK\\JiPP\\ex1\\Windows");
-    secondMatrix = Matrix("matrixToFile.txt", "P:\\PK\\JiPP\\ex1\\Windows");
+    newMatrix.store("matrixToFile.txt", "D:\\tempDir");
+    secondMatrix = Matrix("matrixToFile.txt", "D:\\tempDir");
 
     Matrix anotherMatrix = Matrix(secondMatrix);
 
