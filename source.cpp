@@ -43,9 +43,12 @@ class Matrix
             initMatrix(rowsSize, colsSize);
         }
 
-        // Should check correct size
-        Matrix(int size) 
+        Matrix(int size) throw() 
         {
+            if(size <= 0)
+            {
+                throw IncorrectSizeException();
+            }
             this->colsSize = size;
             this->rowsSize = size; 
             initMatrix(size, size);
@@ -211,7 +214,7 @@ int main()
     try
     {
         newMatrix = Matrix(2,2);
-        secondMatrix = Matrix(2,2);
+        secondMatrix = Matrix(-2);
     }
     catch(const IncorrectSizeException& e)
     {
