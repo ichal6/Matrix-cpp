@@ -6,6 +6,15 @@
 
 using namespace std;
 
+class IncorrectSizeException: public exception 
+{
+    public:
+        virtual const char* what() const throw(){
+            return "Incorrect size";
+        }
+};
+
+
 class Matrix 
 {
     private:
@@ -14,9 +23,21 @@ class Matrix
         vector<vector<double>> matrix;
 
     public:
-        // Should check correct size
-        Matrix(int rowsSize, int colsSize) 
+
+        Matrix()
         {
+            int const deafaultValue = 2;
+            this->colsSize = deafaultValue;
+            this->rowsSize = deafaultValue; 
+            initMatrix(deafaultValue, deafaultValue);
+        }
+
+        Matrix(int rowsSize, int colsSize) throw()
+        {
+            if(rowsSize <= 0 || colsSize <= 0)
+            {
+                throw IncorrectSizeException();
+            }
             this->colsSize = colsSize;
             this->rowsSize = rowsSize; 
             initMatrix(rowsSize, colsSize);
@@ -185,13 +206,24 @@ class Matrix
 
 int main() 
 {
-    Matrix newMatrix = Matrix(2,2);
-    Matrix secondMatrix = Matrix(2,2);
-    // newMatrix.print();
-    // secondMatrix.print();
+    Matrix newMatrix;
+    Matrix secondMatrix;
+    try
+    {
+        newMatrix = Matrix(2,2);
+        secondMatrix = Matrix(2,2);
+    }
+    catch(const IncorrectSizeException& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    
+    
+    newMatrix.print();
+    secondMatrix.print();
    newMatrix.set(0,0,3.5);
-//    newMatrix.print();
-//    cout << newMatrix.cols() << endl;
+   newMatrix.print();
+   cout << newMatrix.cols() << endl;
 
     Matrix resultMatrix = newMatrix.multiply(secondMatrix);
     newMatrix.store("matrixToFile.txt", "D:\\tempDir");
