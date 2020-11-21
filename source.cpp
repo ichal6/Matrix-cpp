@@ -83,9 +83,11 @@ class Matrix
             makeCopyMatrix(matrixToCopy);
         }
 
-        // Should check correct size
         Matrix add(Matrix m2)
         {
+            if(isTheSameSize(m2) == false){
+                throw IncorrectSizeException();
+            }
             Matrix newMatrix(rowsSize, colsSize);
             for(int indexR = 0; indexR < matrix.size(); indexR++) {
                 for(int indexC = 0; indexC < matrix[indexR].size(); indexC++){
@@ -214,6 +216,13 @@ class Matrix
                 }      
             }
         }
+
+        bool isTheSameSize(Matrix m2){
+            if(this->colsSize == m2.colsSize && this->rowsSize == m2.rowsSize){
+                return true;
+            }
+            return false;
+        }
 };
 
 int main() 
@@ -223,14 +232,15 @@ int main()
     try
     {
         newMatrix = Matrix(2,2);
-        secondMatrix = Matrix(-2);
+        secondMatrix = Matrix(2);
     }
     catch(const IncorrectSizeException& e)
     {
         std::cerr << e.what() << '\n';
     }
     
-    
+    newMatrix.add(secondMatrix);
+
     newMatrix.print();
     secondMatrix.print();
    newMatrix.set(0,0,3.5);
@@ -241,7 +251,7 @@ int main()
     newMatrix.store("matrixToFile.txt", "D:\\tempDir");
 
     try{
-        secondMatrix = Matrix("matrixToFile.txt", "tempDir");
+        secondMatrix = Matrix("matrixToFile.txt", "D:\\tempDir");
     } catch(const FailureOpenFileException& ex){
         std::cerr << ex.what() << "Exception ocuure" <<"\n";
     }
