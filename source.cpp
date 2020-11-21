@@ -14,6 +14,13 @@ class IncorrectSizeException: public exception
         }
 };
 
+class FailureOpenFileException: public exception
+{
+    public:
+        virtual const char* what() const throw(){
+            return "Cannot open a file";
+        }
+};
 
 class Matrix 
 {
@@ -32,7 +39,7 @@ class Matrix
             initMatrix(deafaultValue, deafaultValue);
         }
 
-        Matrix(int rowsSize, int colsSize) throw()
+        Matrix(int rowsSize, int colsSize)
         {
             if(rowsSize <= 0 || colsSize <= 0)
             {
@@ -43,7 +50,7 @@ class Matrix
             initMatrix(rowsSize, colsSize);
         }
 
-        Matrix(int size) throw() 
+        Matrix(int size)
         {
             if(size <= 0)
             {
@@ -54,9 +61,11 @@ class Matrix
             initMatrix(size, size);
         }
 
-        // Add exception handling
         Matrix(string filename, string path){
             ifstream readFile(path + '/' + filename);
+            if(!readFile.is_open()){
+                throw FailureOpenFileException();
+            }
 
             readFile >> this->colsSize >> this->rowsSize;
             initMatrix(this->rowsSize, this->colsSize);
@@ -230,7 +239,12 @@ int main()
 
     Matrix resultMatrix = newMatrix.multiply(secondMatrix);
     newMatrix.store("matrixToFile.txt", "D:\\tempDir");
-    secondMatrix = Matrix("matrixToFile.txt", "D:\\tempDir");
+
+    try{
+        secondMatrix = Matrix("matrixToFile.txt", "tempDir");
+    } catch(const FailureOpenFileException& ex){
+        std::cerr << ex.what() << "Exception ocuure" <<"\n";
+    }
 
     Matrix anotherMatrix = Matrix(secondMatrix);
 
