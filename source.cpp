@@ -30,6 +30,14 @@ class IndexOutOfBoundsException: public exception
         }    
 };
 
+class FailureStreamException: public exception
+{
+    public:
+        virtual const char* what() const throw(){
+            return "Stream is  damaged";
+        }    
+};
+
 class Matrix 
 {
     private:
@@ -79,7 +87,6 @@ class Matrix
             initMatrix(this->rowsSize, this->colsSize);
 
             readMatrixFromFile(readFile);
-
             readFile.close();
         }
 
@@ -213,8 +220,10 @@ class Matrix
             }
         }
 
-        // Add exception handling
         void readMatrixFromFile(std::ifstream &inputStream){
+            if(!inputStream.is_open()){
+                throw FailureStreamException();
+            }
             double singlePosition;
             for (int indexR = 0; indexR < this->rowsSize; indexR++){
                 for (int indexC = 0; indexC < this->colsSize; indexC++){
@@ -253,15 +262,4 @@ class Matrix
 int main() 
 {
     Matrix newMatrix;
-    Matrix secondMatrix;
-    try
-    {
-        newMatrix = Matrix(2,2);
-        secondMatrix = Matrix(8);
-    }
-    catch(const IncorrectSizeException& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
-    
-    // newMatrix.multiply(secondMatrix)
+    Matrix seco
