@@ -98,7 +98,6 @@ class Matrix
             return newMatrix;
         }
 
-        // Should check correct size
         Matrix subtract(Matrix m2)
         {
             if(isTheSameSize(m2) == false){
@@ -117,8 +116,7 @@ class Matrix
         Matrix multiply(Matrix m2)
         {
             if(colsSize != m2.rowsSize){
-                // throw an exception
-                return 1;
+                throw IncorrectSizeException();
             }
 
             Matrix newMatrix(rowsSize, m2.colsSize);
@@ -235,14 +233,14 @@ int main()
     try
     {
         newMatrix = Matrix(2,2);
-        secondMatrix = Matrix(2);
+        secondMatrix = Matrix(8);
     }
     catch(const IncorrectSizeException& e)
     {
         std::cerr << e.what() << '\n';
     }
     
-    newMatrix.add(secondMatrix);
+    newMatrix.multiply(secondMatrix);
 
     newMatrix.print();
     secondMatrix.print();
