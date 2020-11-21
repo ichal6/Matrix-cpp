@@ -155,7 +155,6 @@ class Matrix
             outputFile.close();
         }
 
-        // Should write protect by index out of bounds
         void set(int rowsPosition, int colsPosition, double val) 
         {
             if(isIndexOutOfBounds(rowsPosition, colsPosition)){
@@ -165,9 +164,12 @@ class Matrix
             matrix[rowsPosition][colsPosition] = val;
         }
 
-        // Should write protect by index out of bounds
         double get(int rowsPosition, int colsPosition) const 
         {
+            if(isIndexOutOfBounds(rowsPosition, colsPosition)){
+                   throw IndexOutOfBoundsException();
+               }
+
             return matrix[rowsPosition][colsPosition];
         }
 
@@ -239,7 +241,7 @@ class Matrix
             return false;
         }
 
-        bool isIndexOutOfBounds(int rowsPosition, int colsPosition){
+        bool isIndexOutOfBounds(int rowsPosition, int colsPosition) const{
                 if(rowsPosition < 0 || rowsPosition >= this->rowsSize ||
                    colsPosition < 0 || colsPosition >= this->colsSize){
                    return true;
@@ -262,7 +264,4 @@ int main()
         std::cerr << e.what() << '\n';
     }
     
-    // newMatrix.multiply(secondMatrix);
-
-    newMatrix.print();
-    s
+    // newMatrix.multiply(secondMatrix)
