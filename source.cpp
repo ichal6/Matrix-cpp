@@ -101,6 +101,9 @@ class Matrix
         // Should check correct size
         Matrix subtract(Matrix m2)
         {
+            if(isTheSameSize(m2) == false){
+                throw IncorrectSizeException();
+            }
             Matrix newMatrix(rowsSize, colsSize);
             for(int indexR = 0; indexR < matrix.size(); indexR++) {
                 for(int indexC = 0; indexC < matrix[indexR].size(); indexC++){
