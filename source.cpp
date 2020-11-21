@@ -136,10 +136,12 @@ class Matrix
             return newMatrix;
         }
 
-        // Add exception handling
         void store(string filename, string path)
         {
             ofstream outputFile(path + '/' + filename);
+            if(outputFile.fail()){
+                throw FailureOpenFileException();
+            }
             outputFile<< this->colsSize << " " << this->rowsSize << endl;
             printToFile(outputFile);
             outputFile.close();
@@ -240,7 +242,7 @@ int main()
         std::cerr << e.what() << '\n';
     }
     
-    newMatrix.multiply(secondMatrix);
+    // newMatrix.multiply(secondMatrix);
 
     newMatrix.print();
     secondMatrix.print();
@@ -248,7 +250,7 @@ int main()
    newMatrix.print();
    cout << newMatrix.cols() << endl;
 
-    Matrix resultMatrix = newMatrix.multiply(secondMatrix);
+    // Matrix resultMatrix = newMatrix.multiply(secondMatrix);
     newMatrix.store("matrixToFile.txt", "D:\\tempDir");
 
     try{
