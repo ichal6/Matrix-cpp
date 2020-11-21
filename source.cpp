@@ -261,5 +261,5 @@ class Matrix
 
 int main() 
 {
-    Matrix newMatrix;
-    Matrix seco
+    
+}
