@@ -22,6 +22,14 @@ class FailureOpenFileException: public exception
         }
 };
 
+class IndexOutOfBoundsException: public exception
+{
+    public:
+        virtual const char* what() const throw(){
+            return "Index is not contain to matrix";
+        }    
+};
+
 class Matrix 
 {
     private:
@@ -150,6 +158,10 @@ class Matrix
         // Should write protect by index out of bounds
         void set(int rowsPosition, int colsPosition, double val) 
         {
+            if(isIndexOutOfBounds(rowsPosition, colsPosition)){
+                   throw IndexOutOfBoundsException();
+               }
+            
             matrix[rowsPosition][colsPosition] = val;
         }
 
@@ -226,6 +238,14 @@ class Matrix
             }
             return false;
         }
+
+        bool isIndexOutOfBounds(int rowsPosition, int colsPosition){
+                if(rowsPosition < 0 || rowsPosition >= this->rowsSize ||
+                   colsPosition < 0 || colsPosition >= this->colsSize){
+                   return true;
+               }
+               return false;
+        }
 };
 
 int main() 
@@ -245,27 +265,4 @@ int main()
     // newMatrix.multiply(secondMatrix);
 
     newMatrix.print();
-    secondMatrix.print();
-   newMatrix.set(0,0,3.5);
-   newMatrix.print();
-   cout << newMatrix.cols() << endl;
-
-    // Matrix resultMatrix = newMatrix.multiply(secondMatrix);
-    newMatrix.store("matrixToFile.txt", "D:\\tempDir");
-
-    try{
-        secondMatrix = Matrix("matrixToFile.txt", "D:\\tempDir");
-    } catch(const FailureOpenFileException& ex){
-        std::cerr << ex.what() << "Exception ocuure" <<"\n";
-    }
-
-    Matrix anotherMatrix = Matrix(secondMatrix);
-
-    secondMatrix.set(1,0,4.6);
-    anotherMatrix.set(1,0,99.999);
-
-    cout << "Second Matrix" << endl;
-    secondMatrix.print();
-    cout << "Another Matrix" << endl;
-    anotherMatrix.print();
-}
+    s

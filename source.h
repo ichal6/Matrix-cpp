@@ -18,3 +18,5 @@ int rows();
 void print();
 
 void readMatrixFromFile(std::ifstream &inputStream);
+
+bool isIndexOutOfBounds(int rowsPosition, int colsPosition);
