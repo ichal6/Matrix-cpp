@@ -1,2 +1,2 @@
-main: *.cpp *.h
-	g++ main.cpp -o main
+main: src/*.cpp src/*.h
+	g++ src/main.cpp -o main
