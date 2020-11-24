@@ -1,5 +1,7 @@
 #include <iostream>
 #include <fstream>
+#include <vector>
+#include <iomanip>
 
 using namespace std;
 
@@ -53,4 +55,3 @@ class Matrix
 
         bool isIndexOutOfBounds(int rowsPosition, int colsPosition) const;
 };
-
