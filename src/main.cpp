@@ -34,7 +34,7 @@ int main()
     matrixAfterAdd.print();
     cout <<  endl;
 
-    Matrix matrixAfterSubtract = matrix1.subtract(matrix2);
+    Matrix matrixAfterSubtract = matrix1 - matrix2;
     cout << "Wynik odejmowania od macierzy nr 1 macierzy nr 2" << endl;
     matrixAfterSubtract.print();
     cout << endl;

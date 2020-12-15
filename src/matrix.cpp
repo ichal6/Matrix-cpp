@@ -86,6 +86,10 @@ Matrix Matrix::subtract(Matrix m2)
     return newMatrix;
 }
 
+Matrix Matrix::operator-(const Matrix & m2){
+    return this->subtract(m2);
+}
+
 Matrix Matrix::multiply(Matrix m2)
 {
     if(colsSize != m2.rowsSize){
