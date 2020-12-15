@@ -39,7 +39,7 @@ int main()
     matrixAfterSubtract.print();
     cout << endl;
     
-    Matrix matrixAfterMultiply = matrix1.multiply(matrix2);
+    Matrix matrixAfterMultiply = matrix1 * matrix2;
     cout << "Wynik mnozenia macierzy nr 1 przez macierz nr 2" << endl;
     matrixAfterMultiply.print();
     cout << endl;

@@ -113,6 +113,10 @@ Matrix Matrix::multiply(Matrix m2)
     return newMatrix;
 }
 
+Matrix Matrix::operator*(const Matrix & m2){
+    return this->multiply(m2);
+}
+
 void Matrix::store(string filename, string path)
 {
     ofstream outputFile(path + '/' + filename);

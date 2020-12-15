@@ -34,6 +34,8 @@ class Matrix
 
         Matrix multiply(Matrix m2);
 
+        Matrix operator*(const Matrix & m2);
+
         void store(string filename, string path);
 
         void set(int rowsPosition, int colsPosition, double val);
