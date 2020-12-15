@@ -67,6 +67,10 @@ Matrix Matrix::add(Matrix m2)
     return newMatrix;
 }
 
+Matrix Matrix::operator+(const Matrix & m2){
+    return this->add(m2);
+}
+
 Matrix Matrix::subtract(Matrix m2)
 {
     if(isTheSameSize(m2) == false){

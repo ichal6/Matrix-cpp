@@ -29,7 +29,7 @@ int main()
     cout << "Liczba wierszy macierzy 1: " << matrix1.rows() << endl;
     cout << "Liczba kolumn macierzy 1: " << matrix1.cols() << endl;
 
-    Matrix matrixAfterAdd = matrix1.add(matrix2);
+    Matrix matrixAfterAdd = matrix1 + matrix2;
     cout << "Wynik dodawania do macierzy nr 1 macierzy nr 2" << endl;
     matrixAfterAdd.print();
     cout <<  endl;
