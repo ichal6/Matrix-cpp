@@ -51,6 +51,10 @@ class Matrix
         void print();
 
         friend std::ofstream& operator<<(std::ofstream &strm, Matrix matrix);
+
+        friend bool operator==(const Matrix& m1, const Matrix& m2);
+
+        vector<double> &operator[](int rowsPosition);
     private:
         void printToFile(ofstream &outputStream);
 
@@ -63,6 +67,8 @@ class Matrix
         bool isTheSameSize(Matrix m2);
 
         bool isIndexOutOfBounds(int rowsPosition, int colsPosition) const;
+
+        bool isIndexOutOfBounds(int rowsPosition) const;
 
         void printToFile(std::ofstream &strm, vector<vector<double>> &matrix);
 };

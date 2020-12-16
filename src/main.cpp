@@ -57,4 +57,9 @@ int main()
         return 1;
     }
 
+    cout << "Wypisuje drugi wiersz macierzy:" << endl;
+    for(double digit: matrixAfterMultiply[1]){
+        cout << digit << " ";
+    }
+    cout << endl;
 }

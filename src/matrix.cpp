@@ -236,9 +236,27 @@ bool Matrix::isTheSameSize(Matrix m2){
 }
 
 bool Matrix::isIndexOutOfBounds(int rowsPosition, int colsPosition) const{
-        if(rowsPosition < 0 || rowsPosition >= this->rowsSize ||
-            colsPosition < 0 || colsPosition >= this->colsSize){
-            return true;
-        }
-        return false;
+    if(rowsPosition < 0 || rowsPosition >= this->rowsSize ||
+        colsPosition < 0 || colsPosition >= this->colsSize){
+        return true;
+    }
+    return false;
+}
+
+bool Matrix::isIndexOutOfBounds(int rowsPosition) const{
+    if(rowsPosition < 0 || rowsPosition >= this->rowsSize){
+        return true;
+    }
+    return false;
+}
+
+bool operator==(const Matrix& m1, const Matrix& m2){
+
+}
+
+vector<double> &Matrix::operator[](int rowsPosition){
+    if(isIndexOutOfBounds(rowsPosition)){
+        throw IndexOutOfBoundsException();
+    }
+    return matrix[rowsPosition];
 }
