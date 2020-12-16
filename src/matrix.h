@@ -38,6 +38,8 @@ class Matrix
 
         void store(string filename, string path);
 
+        static ofstream openFile(string filename, string path);
+
         void set(int rowsPosition, int colsPosition, double val);
 
         double get(int rowsPosition, int colsPosition) const;
@@ -48,6 +50,9 @@ class Matrix
 
         void print();
 
+        friend std::ofstream& operator<<(std::ofstream &strm, Matrix matrix);
+
+        void printToFile(std::ofstream &strm, vector<vector<double>> &matrix);
     private:
         void printToFile(ofstream &outputStream);
 

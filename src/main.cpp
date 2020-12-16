@@ -45,7 +45,8 @@ int main()
     cout << endl;
 
     try{
-        matrixAfterMultiply.store("matrix", "/tmp");
+        ofstream outputFile = Matrix::openFile("matrix", "/tmp");
+        outputFile << matrixAfterMultiply;
         Matrix matrixFromFile("matrix", "/tmp");
         cout << "Zapisano i odczytano wynik mnozenia macierzy z pliku:" << endl;
         matrixFromFile.print();

@@ -119,13 +119,32 @@ Matrix Matrix::operator*(const Matrix & m2){
 
 void Matrix::store(string filename, string path)
 {
+    ofstream outputFile = openFile(filename, path);
+    outputFile << this->colsSize << " " << this->rowsSize << endl;
+    printToFile(outputFile); 
+    outputFile.close();
+}
+
+ofstream Matrix::openFile(string filename, string path){
     ofstream outputFile(path + '/' + filename);
     if(outputFile.fail()){
         throw FailureOpenFileException();
     }
-    outputFile<< this->colsSize << " " << this->rowsSize << endl;
-    printToFile(outputFile);
-    outputFile.close();
+    return outputFile;
+}
+
+ofstream &operator<<(std::ofstream &strm, Matrix matrix) {
+    strm << matrix.colsSize << " " << matrix.rowsSize << endl;
+    matrix.printToFile(strm, matrix.matrix); 
+    return strm;
+}
+
+void Matrix::printToFile(std::ofstream &strm, vector<vector<double>> &matrix) {
+    for (int i = 0; i < matrix.size(); i++) { 
+        for (int j = 0; j < matrix[i].size(); j++) 
+            strm << matrix[i][j] << " "; 
+        strm << endl; 
+    }
 }
 
 void Matrix::set(int rowsPosition, int colsPosition, double val) 
