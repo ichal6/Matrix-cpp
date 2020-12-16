@@ -62,4 +62,14 @@ int main()
         cout << digit << " ";
     }
     cout << endl;
+
+
+    cout << "Porównanie dwoch macierzy:" << endl;
+    if(matrix1 == matrix2)
+        cout << "Macierze są takie same";
+    else
+        cout << "Macierze nie są takie same";
+
+    cout << endl;
+    
 }

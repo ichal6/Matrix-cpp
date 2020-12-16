@@ -251,7 +251,13 @@ bool Matrix::isIndexOutOfBounds(int rowsPosition) const{
 }
 
 bool operator==(const Matrix& m1, const Matrix& m2){
-
+    for (int i = 0; i < m1.matrix.size(); i++) { 
+        for (int j = 0; j < m1.matrix[i].size(); j++) 
+            if(fabs(m1.matrix[i][j] - m2.matrix[i][j]) < 0.0000001f)
+                return true; //they are same
+                return false; //they are not same
+    }
+    return true;  
 }
 
 vector<double> &Matrix::operator[](int rowsPosition){
