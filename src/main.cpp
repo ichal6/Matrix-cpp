@@ -61,7 +61,7 @@ int main()
     cout << endl;
 
 
-    cout << "Porównanie dwoch macierzy:" << endl;
+    cout << "\nPorównanie dwoch macierzy:" << endl;
     if(matrix1 == matrix2)
         cout << "Macierze są takie same";
     else
