@@ -42,9 +42,9 @@ int main()
     cout << endl;
 
     try{
-        ofstream outputFile = Matrix::openFile("matrix", "/tmp");
+        ofstream outputFile = Matrix::openFile("matrix", ".");
         outputFile << matrixAfterMultiply;
-        Matrix matrixFromFile("matrix", "/tmp");
+        Matrix matrixFromFile("matrix", ".");
         cout << "Zapisano i odczytano wynik mnozenia macierzy z pliku:" << endl;
         matrixFromFile.print();
         cout << endl;
