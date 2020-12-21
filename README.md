@@ -1,1 +1,1 @@
-Dla poprawnej pracy program powinien być uruchomiony pod Linuxem, ze względu na demostrację działania zapisu i odczytu z pliku, gdzie wykorzystany jest katalog /tmp
+Aby skompilować program należy użyć polecenia make. Program zostanbie zapsiany jako ex3. Zalecany system operacyjny - Linux. Skompilowano na wersji g++ 7.5.0 .
