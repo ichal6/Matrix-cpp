@@ -61,11 +61,11 @@ int main()
     cout << endl;
 
 
-    cout << "\nPorównanie dwoch macierzy:" << endl;
+    cout << "\nPorownanie dwoch macierzy:" << endl;
     if(matrix1 == matrix2)
-        cout << "Macierze są takie same";
+        cout << "Macierze sa takie same";
     else
-        cout << "Macierze nie są takie same";
+        cout << "Macierze nie sa takie same";
 
     cout << endl;
     
