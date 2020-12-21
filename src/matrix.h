@@ -51,7 +51,7 @@ class Matrix
 
         void print();
 
-        friend std::ofstream& operator<<(std::ofstream &strm, Matrix matrix);
+        friend std::ostream& operator<<(std::ostream &strm, Matrix matrix);
 
         friend bool operator==(const Matrix& m1, const Matrix& m2);
 
@@ -71,5 +71,5 @@ class Matrix
 
         bool isIndexOutOfBounds(int rowsPosition) const;
 
-        void printToFile(std::ofstream &strm, vector<vector<double>> &matrix);
+        void printToFile(std::ostream &strm, vector<vector<double>> &matrix);
 };

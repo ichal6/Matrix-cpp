@@ -133,13 +133,13 @@ ofstream Matrix::openFile(string filename, string path){
     return outputFile;
 }
 
-ofstream &operator<<(std::ofstream &strm, Matrix matrix) {
+ostream& operator<<(std::ostream &strm, Matrix matrix) {
     strm << matrix.colsSize << " " << matrix.rowsSize << endl;
     matrix.printToFile(strm, matrix.matrix); 
     return strm;
 }
 
-void Matrix::printToFile(std::ofstream &strm, vector<vector<double>> &matrix) {
+void Matrix::printToFile(std::ostream &strm, vector<vector<double>> &matrix) {
     for (int i = 0; i < matrix.size(); i++) { 
         for (int j = 0; j < matrix[i].size(); j++) 
             strm << matrix[i][j] << " "; 
