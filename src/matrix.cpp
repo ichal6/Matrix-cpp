@@ -52,7 +52,7 @@ Matrix::Matrix(const Matrix &matrixToCopy)
     makeCopyMatrix(matrixToCopy);
 }
 
-Matrix Matrix::add(Matrix m2)
+Matrix Matrix::add(const Matrix &m2)
 {
     if(isTheSameSize(m2) == false){
         throw IncorrectSizeException();
@@ -71,7 +71,7 @@ Matrix Matrix::operator+(const Matrix & m2){
     return this->add(m2);
 }
 
-Matrix Matrix::subtract(Matrix m2)
+Matrix Matrix::subtract(const Matrix &m2)
 {
     if(isTheSameSize(m2) == false){
         throw IncorrectSizeException();
@@ -90,7 +90,7 @@ Matrix Matrix::operator-(const Matrix & m2){
     return this->subtract(m2);
 }
 
-Matrix Matrix::multiply(Matrix m2)
+Matrix Matrix::multiply(const Matrix &m2)
 {
     if(colsSize != m2.rowsSize){
         throw IncorrectSizeException();
@@ -254,7 +254,7 @@ bool operator==(const Matrix& m1, const Matrix& m2){
     if(m1.cols() != m2.cols() && m1.rows() != m2.rows()){
         return false;
     }
-    
+
     for (int i = 0; i < m1.matrix.size(); i++) { 
         for (int j = 0; j < m1.matrix[i].size(); j++) 
             if(fabs(m1.matrix[i][j] - m2.matrix[i][j]) >= 0.0000001f)
