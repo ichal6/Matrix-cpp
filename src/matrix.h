@@ -45,9 +45,9 @@ class Matrix
 
         double get(int rowsPosition, int colsPosition) const;
 
-        int cols();
+        int cols() const;
 
-        int rows();
+        int rows() const;
 
         void print();
 
@@ -65,7 +65,7 @@ class Matrix
 
         void makeCopyMatrix(Matrix const &matrixToCopy);
 
-        bool isTheSameSize(Matrix m2);
+        bool isTheSameSize(Matrix m2) const;
 
         bool isIndexOutOfBounds(int rowsPosition, int colsPosition) const;
 

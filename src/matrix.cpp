@@ -165,12 +165,12 @@ double Matrix::get(int rowsPosition, int colsPosition) const
     return matrix[rowsPosition][colsPosition];
 }
 
-int Matrix::cols()
+int Matrix::cols() const
 {
     return this->colsSize;
 }
 
-int Matrix::rows()
+int Matrix::rows() const
 {
     return this->rowsSize;
 }
@@ -228,7 +228,7 @@ void Matrix::makeCopyMatrix(Matrix const &matrixToCopy){
     }
 }
 
-bool Matrix::isTheSameSize(Matrix m2){
+bool Matrix::isTheSameSize(Matrix m2) const{
     if(this->colsSize == m2.colsSize && this->rowsSize == m2.rowsSize){
         return true;
     }
@@ -251,6 +251,10 @@ bool Matrix::isIndexOutOfBounds(int rowsPosition) const{
 }
 
 bool operator==(const Matrix& m1, const Matrix& m2){
+    if(m1.cols() != m2.cols() && m1.rows() != m2.rows()){
+        return false;
+    }
+    
     for (int i = 0; i < m1.matrix.size(); i++) { 
         for (int j = 0; j < m1.matrix[i].size(); j++) 
             if(fabs(m1.matrix[i][j] - m2.matrix[i][j]) >= 0.0000001f)
