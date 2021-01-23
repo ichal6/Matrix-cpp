@@ -251,7 +251,7 @@ bool Matrix::isIndexOutOfBounds(int rowsPosition) const{
 }
 
 bool operator==(const Matrix& m1, const Matrix& m2){
-    if(m1.cols() != m2.cols() && m1.rows() != m2.rows()){
+    if(m1.cols() != m2.cols() || m1.rows() != m2.rows()){
         return false;
     }
 
